@@ -46,3 +46,28 @@ make
 
 ### Installing
 `sudo make install`
+
+### Compile as flatpak
+Assumming flatpak is already installed. Install flatpak-builder by running
+
+`sudo apt-get install flatpak-builder`
+
+First install correct SDK
+
+`flatpak install flathub org.gnome.Sdk//3.26`
+
+Create the folder which it will be compiled to.
+
+`mkdir flatpak-build`
+
+Run the flatpak-builder to compile the flatpak.
+
+`flatpak-builder --repo=repo flatpak-build flatpak/com.github.bartzaalberg.php-tester.json`
+
+Then add to repo
+
+`flatpak --user remote-add --no-gpg-verify --if-not-exists tutorial-repo repo`
+
+And install
+
+`flatpak --user install tutorial-repo com.github.bartzaalberg.php-tester`
